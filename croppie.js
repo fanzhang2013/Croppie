@@ -7,15 +7,15 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['exports', 'b'], factory);
+        define(['exports'], factory);
     } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
         // CommonJS
-        factory(exports, require('b'));
+        factory(exports);
     } else {
         // Browser globals
         factory((root.commonJsStrict = {}), root.b);
     }
-}(this, function (exports, b) {
+}(this, function (exports) {
 
     if (typeof Promise !== 'function') {
         /*!
@@ -347,7 +347,7 @@
 
         function scroll(ev) {
             var delta, targetZoom;
-        
+
             if (ev.wheelDelta) {
                 delta = ev.wheelDelta / 1200; //wheelDelta min: -120 max: 120 // max x 10 x 2
             } else if (ev.deltaY) {
@@ -357,9 +357,9 @@
             } else {
                 delta = 0;
             }
-        
+
             targetZoom = self._currentZoom + delta;
-        
+
             ev.preventDefault();
             start();
             _setZoomerVal.call(self, targetZoom);
@@ -672,7 +672,7 @@
             _centerImage.call(self);
         }
 
-        
+
         _updateOverlay.call(self);
     }
 
@@ -778,7 +778,7 @@
         y1 = Math.max(0, y1 / scale);
         x2 = Math.max(0, x2 / scale);
         y2 = Math.max(0, y2 / scale);
-       
+
         return {
             points: [fix(x1), fix(y1), fix(x2), fix(y2)],
             zoom: scale
